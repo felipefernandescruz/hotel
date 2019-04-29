@@ -7,6 +7,7 @@ const authMiddleware = require('./app/middlewares/auth')
 const controllers = require('./app/controllers')
 
 routes.post('/users', controllers.UserController.userCreate)
+routes.get('/users', controllers.UserController.userGetAllHotels)
 routes.post('/auth', controllers.AuthController.login)
 
 routes.use(authMiddleware)
@@ -15,6 +16,7 @@ routes.use(authMiddleware)
  */
 
 routes.get('/hotel', controllers.HotelController.getAll)
+routes.get('/hotel/room/:id', controllers.HotelController.hotelByUser)
 routes.get('/hotel/:id', controllers.HotelController.getByKey)
 routes.post('/hotel', controllers.HotelController.hotelCreate)
 routes.put('/hotel/:id', controllers.HotelController.hotelUpdate)

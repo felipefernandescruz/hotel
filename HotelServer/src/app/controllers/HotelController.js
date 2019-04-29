@@ -33,10 +33,6 @@ class HotelController {
       }
     }
 
-    if (req.query.owner.name) {
-      filters.name = new RegExp(req.query.name)
-    }
-
     if (req.query.city) {
       filters.city = new RegExp(req.query.city)
     }
@@ -90,6 +86,21 @@ class HotelController {
     await Hotel.findByIdAndDelete(req.params.id)
 
     return res.send()
+  }
+
+  async hotelByUser (req, res) {
+    console.log(req)
+    const filters = {}
+
+    filters.owner = req.params.id
+    const hotels = await Hotel.paginate(filters, {
+      page: req.query.page || 1,
+      limit: 10,
+      populate: ['owner'],
+      sort: '-createdAt'
+    })
+
+    return res.send(hotels)
   }
 }
 

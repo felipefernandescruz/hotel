@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const authConfig = require('../../config/auth')
+const mongoosePaginate = require('mongoose-paginate')
 
 const UserModel = new mongoose.Schema({
   name: {
@@ -49,5 +50,7 @@ UserModel.statics = {
     })
   }
 }
+
+UserModel.plugin(mongoosePaginate)
 
 module.exports = mongoose.model('User', UserModel)
