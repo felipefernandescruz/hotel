@@ -33,7 +33,7 @@ class HotelController {
       }
     }
 
-    if (req.query.name) {
+    if (req.query.owner.name) {
       filters.name = new RegExp(req.query.name)
     }
 
@@ -58,12 +58,22 @@ class HotelController {
   }
 
   async hotelCreate (req, res) {
+    if (!req.isHotel) {
+      return res
+        .status(400)
+        .json({ error: 'usuário não permitido para cadastrar hotel' })
+    }
     const hotel = await Hotel.create({ ...req.body, owner: req.userId })
 
     return res.json(hotel)
   }
 
   async hotelUpdate (req, res) {
+    if (!req.isHotel) {
+      return res
+        .status(400)
+        .json({ error: 'usuário não permitido para alterar hotel' })
+    }
     const hotel = await Hotel.findOneAndUpdate(req.params.id, req.body, {
       new: true
     })
@@ -72,6 +82,11 @@ class HotelController {
   }
 
   async hotelDelete (req, res) {
+    if (!req.isHotel) {
+      return res
+        .status(400)
+        .json({ error: 'usuário não permitido para deletar hotel' })
+    }
     await Hotel.findByIdAndDelete(req.params.id)
 
     return res.send()

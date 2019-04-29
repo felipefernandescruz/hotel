@@ -18,6 +18,10 @@ const UserModel = new mongoose.Schema({
     type: String,
     required: true
   },
+  isHotel: {
+    type: Boolean,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -39,8 +43,8 @@ UserModel.methods = {
 }
 
 UserModel.statics = {
-  generateToken ({ id }) {
-    return jwt.sign({ id }, authConfig.secret, {
+  generateToken ({ id, isHotel }) {
+    return jwt.sign({ id, isHotel }, authConfig.secret, {
       expiresIn: authConfig.ttl
     })
   }
