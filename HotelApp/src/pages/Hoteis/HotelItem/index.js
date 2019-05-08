@@ -1,37 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { View, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Image, View } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base'
+
 import styles from './styles';
 
-const HotelItem = ({ repository }) => (
-  <View style={styles.container}>
-    <Text style={styles.title}>{repository.full_name}</Text>
+const HotelItem = ({ hotel, navigation }) => {
+  return(
+          <Card>
+            <CardItem>
+              <Left>
+                <Body>
+                  <Text>{hotel.name}</Text>
+                  <Text note>{hotel.owner.name}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image source={{uri: hotel.picture}} style={{height: 200, width: null, flex: 1}}/>
+              
+            </CardItem>
+            <CardItem>      
+            <Text>Descrição: {hotel.description}</Text>
+            </CardItem>
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="thumbs-up" />
+                  <Text>{hotel.classification} Likes</Text>
+                </Button>
+              </Left>
+              <Body>
+                  <Text>{hotel.city}</Text>
+              </Body>
+              <Right>
+                <Text>Preço: {hotel.price}</Text>
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Button style={styles.button} onPress={()=> navigation.navigate('Quarto',{itemId:hotel._id})} >
+                <Text>Reservar</Text>
+              </Button>
+            </CardItem>
+          </Card>
+)}
 
-    <View style={styles.infoContainer}>
-      <View style={styles.info}>
-        <Icon name="star" size={12} style={styles.infoIcon} />
-        <Text style={styles.infoText}>{repository.stargazes_count}</Text>
-      </View>
-      <View style={styles.info}>
-        <Icon name="code-fork" size={12} style={styles.infoIcon} />
-        <Text style={styles.infoText}>{repository.forks_count}</Text>
-      </View>
-      <View style={styles.info}>
-        <Icon name="eye" size={12} style={styles.infoIcon} />
-        <Text style={styles.infoText}>{repository.watchers_count}</Text>
-      </View>
-    </View>
-  </View>
-);
+
 
 HotelItem.propTypes = {
   repository: PropTypes.shape({
-    full_name: PropTypes.string,
-    stargazes_count: PropTypes.number,
-    forks_count: PropTypes.number,
-    watchers_count: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    picture: PropTypes.string,
+    city: PropTypes.string,
+    classification: PropTypes.number,
+    price: PropTypes.number,
+    vacancy: PropTypes.number
   }).isRequired,
 };
 

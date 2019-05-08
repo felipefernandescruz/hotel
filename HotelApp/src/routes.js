@@ -3,9 +3,12 @@ import {AsyncStorage} from 'react-native';
 
 import Welcome from '~/pages/Welcome';
 import UserRegister from '~/pages/UserRegister';
-import Repositories from '~/pages/Repositories';
-import Organizations from '~/pages/Organizations';
 import HotelRegister from '~/pages/HotelRegister';
+import Hoteis from '~/pages/Hoteis';
+import Quarto from '~/pages/Quarto';
+import ConfirmarQuarto from '~/pages/ConfirmarQuarto';
+import MinhasReservas from '~/pages/MinhasReservas';
+
 import { colors } from '~/styles';
 
 const Routes = (userLogged = false, isHotel) => createAppContainer(
@@ -14,8 +17,8 @@ const Routes = (userLogged = false, isHotel) => createAppContainer(
       Welcome,
       UserRegister,
       User: createBottomTabNavigator({
-        Repositories,
-        Organizations,
+        Hoteis,
+        MinhasReservas,
       }, {
         tabBarOptions: {
           showIcon: true,
@@ -28,6 +31,8 @@ const Routes = (userLogged = false, isHotel) => createAppContainer(
         },
       }),
       HotelRegister,
+      Quarto,
+      ConfirmarQuarto,
     },
     {
       initialRouteName: userLogged 

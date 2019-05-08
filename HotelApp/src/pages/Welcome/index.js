@@ -59,7 +59,6 @@ export default class Welcome extends Component {
   }
   navigationController = (isHotel) =>{
     const { navigation } = this.props;
-    console.tron.log(isHotel);
     if(isHotel){
       navigation.navigate('HotelRegister');
     }else{
@@ -68,7 +67,6 @@ export default class Welcome extends Component {
   }
   singIn = async () => {
     const { username, password } = this.state;
-    const { navigation } = this.props;
 
     this.setState({ loading: true });
     try {

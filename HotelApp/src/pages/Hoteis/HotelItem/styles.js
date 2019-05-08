@@ -30,6 +30,14 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: metrics.baseMargin / 2,
   },
+  button: {
+    backgroundColor: colors.primary,
+    borderRadius: metrics.baseRadius,
+    height: 44,
+    marginTop: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;

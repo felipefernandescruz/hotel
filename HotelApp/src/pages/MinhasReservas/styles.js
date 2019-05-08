@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  cardFilterInputs:{
+  cardFilterInputs: {
     flex: 1,
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 });
 
 export default styles;

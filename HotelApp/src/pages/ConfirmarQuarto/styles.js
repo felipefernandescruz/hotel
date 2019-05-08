@@ -1,12 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { metrics, colors } from '~/styles';
+import { colors, metrics } from '~/styles';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.lighter,
-  },
-  loading: {
+  form: {
     marginTop: metrics.baseMargin * 2,
   },
   input: {
@@ -20,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: metrics.baseRadius,
     height: 44,
-    marginTop: 0,
+    marginTop: metrics.baseMargin,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -29,10 +25,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  cardFilterInputs:{
-    flex: 1,
-    flexDirection: 'column'
-  }
 });
 
 export default styles;

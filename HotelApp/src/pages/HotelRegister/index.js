@@ -33,8 +33,6 @@ class HotelRegister extends Component {
   };
 
   hotelRegister = async (name, description, picture, city, classification, price, vacancy) => {
-    console.tron.log(classification)
-    
     const response = await api.post('/hotel', {
       name: name,
       description: description,
